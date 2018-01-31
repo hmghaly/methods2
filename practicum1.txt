@@ -3,3 +3,20 @@ https://www-uxsup.csx.cam.ac.uk/pub/doc/suse/suse9.0/userguide-9.0/ch24s04.html
 
 and we also used filezilla client to be able to browse and edit the files on the remote server:
 https://filezilla-project.org/download.php?type=client
+
+Then we investigate the basics of python os library:
+==================
+>>> import os
+>>> os.getcwd()
+'/home/sp18/hghaly'
+>>> os.mkdir("new_py_dir")
+>>> fname="new_file.txt"
+>>> fopen=open(fname)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IOError: [Errno 2] No such file or directory: 'new_file.txt'
+>>> fopen=open(fname,"w")
+>>> content="Here we go, let's put some content in"
+>>> fopen.write(content)
+>>> fopen.close()
+==================
