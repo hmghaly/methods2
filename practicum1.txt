@@ -20,3 +20,41 @@ IOError: [Errno 2] No such file or directory: 'new_file.txt'
 >>> fopen.write(content)
 >>> fopen.close()
 ==================
+
+==================
+#!/usr/bin/python
+#this is a practice code to take 2 arguments for a script file in command line
+#the first argument is the file name, the second, is the content of the file
+from sys import argv
+
+if len(argv)<3:
+	print "we need file name and content - must have 2 arguments"
+else:
+	fname=argv[1]
+	content=argv[2]
+	fopen=open(fname,"w")
+	fopen.write(content)
+	fopen.close()
+	print "file successfully written"
+==================
+
+to learn about using os for joining file paths
+==================
+>>> import os
+>>> os.getcwd()
+'/home/sp18/hghaly'
+>>> os.path.join(os.getcwd(),"new_dir")
+'/home/sp18/hghaly/new_dir'
+>>> fpath=os.path.join(os.getcwd(),"new_dir","new_file_name.txt")
+>>> fapth
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'fapth' is not defined
+>>> fpath
+'/home/sp18/hghaly/new_dir/new_file_name.txt'
+>>> fopen=open(fpath,"w")
+>>> fopen.write("lets try this new os thing")
+>>> fopen.close()
+>>> os.getcwd()
+'/home/sp18/hghaly'
+==================
