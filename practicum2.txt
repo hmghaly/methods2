@@ -1,0 +1,161 @@
+#practicum 2
+#working on chapter 1 from NLTK book http://www.nltk.org/book/ch01.html, problems 8, 10, 13, 18, 19, 20, 23, 25, 27
+
+from nltk.book import *
+#loading texts
+>>> tokens=text1.tokens
+>>> len(tokens)
+260819
+
+#get the tokens in the text
+tokens[:50]
+[u'[', u'Moby', u'Dick', u'by', u'Herman', u'Melville', u'1851', u']', u'ETYMOLOGY', u'.', u'(', u'Supplied', u'by', u'a', u'Late', u'Consumptive', u'Usher', u'to', u'a', u'Grammar', u'School', u')', u'The', u'pale', u'Usher', u'--', u'threadbare', u'in', u'coat', u',', u'heart', u',', u'body', u',', u'and', u'brain', u';', u'I', u'see', u'him', u'now', u'.', u'He', u'was', u'ever', u'dusting', u'his', u'old', u'lexicons', u'and']
+
+#now understand what does "set" do
+>>> my_list=[1,2,4,5,1,2,3,5]
+>>> len(my_list)
+8
+>>> set(my_list)
+set([1, 2, 3, 4, 5])
+>>> list(set(my_list))
+[1, 2, 3, 4, 5]
+
+#Problem 8
+#applying this on text4 
+>>> set_text4=set(text4)
+>>> len(set_text4)
+9754
+>>> len(text4)
+145735
+>>> len(set(text4))
+9754
+
+#problem 10
+>>> my_sent=["do","as","you","would","be","done","by"]
+>>> ' '.join(my_sent)
+'do as you would be done by'
+
+
+#problem 13
+>>> sent1
+['Call', 'me', 'Ishmael', '.']
+>>> sent1[2]
+'Ishmael'
+>>> sent1[2][2]
+'h'
+>>> sent2
+['The', 'family', 'of', 'Dashwood', 'had', 'long', 'been', 'settled', 'in', 'Sussex', '.']
+>>> sent2[1][-1]
+'y'
+>>> sent2[-1][-1]
+'.'
+>>> sent2[-2][-1]
+'x'
+
+
+#problem 18
+>>> all_sents=sent1+sent2+sent3+sent4+sent5+sent6+sent7+sent8
+>>> all_sents_normalized=[item.lower() for item in all_sents]
+>>> all_sents_normalized
+['call', 'me', 'ishmael', '.', 'the', 'family', 'of', 'dashwood', 'had', 'long', 'been', 'settled', 'in', 'sussex', '.', 'in', 'the', 'beginning', 'god', 'created', 'the', 'heaven', 'and', 'the', 'earth', '.', 'fellow', '-', 'citizens', 'of', 'the', 'senate', 'and', 'of', 'the', 'house', 'of', 'representatives', ':', 'i', 'have', 'a', 'problem', 'with', 'people', 'pming', 'me', 'to', 'lol', 'join', 'scene', '1', ':', '[', 'wind', ']', '[', 'clop', 'clop', 'clop', ']', 'king', 'arthur', ':', 'whoa', 'there', '!', 'pierre', 'vinken', ',', '61', 'years', 'old', ',', 'will', 'join', 'the', 'board', 'as', 'a', 'nonexecutive', 'director', 'nov.', '29', '.', '25', 'sexy', 'male', ',', 'seeks', 'attrac', 'older', 'single', 'lady', ',', 'for', 'discreet', 'encounters', '.']
+>>> unique_items=set(all_sents_normalized)
+>>> unique_items
+set(['and', 'old', 'family', 'people', 'senate', '-', 'scene', 'fellow', '61', 'as', 'clop', 'been', 'have', 'in', 'earth', 'lol', '!', '25', 'dashwood', '29', ']', 'god', 'there', 'had', 'representatives', 'long', '.', '1', 'to', 'call', 'board', 'house', 'sexy', ':', 'encounters', 'whoa', 'seeks', 'lady', 'a', ',', 'nov.', 'with', 'sussex', 'vinken', 'pierre', 'director', 'attrac', 'nonexecutive', '[', 'years', 'beginning', 'problem', 'ishmael', 'me', 'king', 'heaven', 'join', 'for', 'created', 'i', 'of', 'older', 'citizens', 'single', 'will', 'arthur', 'discreet', 'wind', 'the', 'male', 'settled', 'pming'])
+>>> len(unique_items)
+72
+>>> len(all_sents_normalized)
+99
+
+>>> unique_items_list=list(unique_items)
+>>> for ui in unique_items_list:
+...     print ui
+
+
+>>> all_sents_normalized.count("wind")
+1
+>>> all_sents_normalized.count("of")
+4
+>>> all_sents_normalized.count("the")
+7
+>>> for ui in unique_items_list:
+...     print ui, all_sents_normalized.count(ui) 
+... 
+and 2
+old 1
+family 1
+people 1
+senate 1
+
+
+>>> sorted_unique_items=sorted(unique_items_list)
+>>> sorted_unique_items
+['!', ',', '-', '.', '1', '25', '29', '61', ':', '[', ']', 'a', 'and', 'arthur', 'as', 'attrac', 'been', 'beginning', 'board', 'call', 'citizens', 'clop', 'created', 'dashwood', 'director', 'discreet', 'earth', 'encounters', 'family', 'fellow', 'for', 'god', 'had', 'have', 'heaven', 'house', 'i', 'in', 'ishmael', 'join', 'king', 'lady', 'lol', 'long', 'male', 'me', 'nonexecutive', 'nov.', 'of', 'old', 'older', 'people', 'pierre', 'pming', 'problem', 'representatives', 'scene', 'seeks', 'senate', 'settled', 'sexy', 'single', 'sussex', 'the', 'there', 'to', 'vinken', 'whoa', 'will', 'wind', 'with', 'years']
+>>> for ui in sorted_unique_items:
+...     print ui, all_sents_normalized.count(ui) 
+
+#problem 19
+>>> var1=sorted(set(w.lower() for w in text1))
+>>> var2=sorted(w.lower() for w in set(text1))
+>>> len(var1)
+17231
+>>> len(var2)
+19317
+>>> var2=sorted(w.lower() for w in set(text2))
+>>> var1=sorted(set(w.lower() for w in text2))
+>>> var2=sorted(w.lower() for w in set(text2))
+>>> len(var1)
+6403
+>>> len(var2)
+6833
+
+
+#problem 20
+>>> w="ABC"
+>>> w.isupper()
+True
+>>> w="Abc"
+>>> w.isupper()
+False
+>>> w="ABC"
+>>> w.islower()
+False
+>>> w="abc"
+>>> w.islower()
+True
+>>> w="Abc"
+>>> w.islower()
+False
+
+
+#problem 23
+>>> for word in text6:
+...     if word.isupper(): print word
+
+>>> for word in text6:
+...     if len(word)>1 and not word.isupper() and word[0].isupper(): print word
+
+for word in text6:
+...     if len(word)>1 and len(word)<5 and not word.isupper() and word[0].isupper() and word[0].lower()=="g": print word
+
+>>> for word in text6:
+...     if len(word)>1 and len(word)<5 and not word.isupper() and word[0].isupper(): print word
+
+#problem 25
+>>> for w in sent:
+...     if len(w)>4: print w
+... 
+sells
+shells
+shore
+>>> for w in sent:
+...     if w.startswith("sh"): print w
+... 
+she
+shells
+shore
+
+#problem 27
+>>> def get_vocab_size(input_text):
+...     lower_text=[word.lower() for word in input_text]
+...     unique_words=list(set(lower_text))
+...     return len(lower_text), len(unique_words)
